@@ -1,4 +1,5 @@
 import argparse
+from pathlib import Path
 import time
 
 import cv2
@@ -26,6 +27,7 @@ def main(args):
     orig_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     orig_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    Path(args.out).mkdir(parents=True, exist_ok=True)
     out_vid = cv2.VideoWriter(args.out, fourcc, fps, (orig_w, orig_h))
 
     frame_idx = 0
