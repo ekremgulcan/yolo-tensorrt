@@ -2,8 +2,6 @@
 
 Minimal project to run a YOLOv8 model with TensorRT for fast inference on CUDA-enabled GPUs.
 
-NOTE: This README.md file was written by an LLM.
-
 ## References
 
 Some of the sites I used when writing the code:
