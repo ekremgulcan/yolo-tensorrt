@@ -10,10 +10,17 @@ Some of the sites I used when writing the code:
 - https://docs.nvidia.com/deeplearning/tensorrt/latest/inference-library/python-api-docs.html
 - https://forums.developer.nvidia.com/t/inference-multiple-images-tensorrt/129054
 
+
 ## Prerequisites
 - CUDA and TensorRT installed and configured for your GPU.
+- `pycuda`, `numpy`, `opencv-python`, `torch`, `torchvision`, and `tensorrt` installed.
 - Python >= 3.13 (see [pyproject.toml](pyproject.toml)).
-- Optional: the "uv" dependency manager used by this project.
+
+> [!NOTE]
+> This project uses uv for dependency management.
+
+> [!WARNING]
+> Follow the instructions on [PyTorch website](https://pytorch.org/get-started/locally/) to install PyTorch if you do not use uv.
 
 ## Setup
 
