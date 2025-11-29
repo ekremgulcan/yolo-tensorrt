@@ -39,7 +39,7 @@ def main(args):
         frame_idx += 1
 
         # Preprocess on GPU and get numpy input for TRT (shape [1,3,H,W])
-        input_np = preprocess_frame(frame, device)  # returns (1,3,416,416) numpy float32
+        input_np = preprocess_frame(frame, device)  # returns (1,3,416,416)
 
         # The actual detection
         outputs = trt_model.detect(input_np)
@@ -54,11 +54,13 @@ def main(args):
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
             continue
-
+        
+        # Use NMS to filter out the boxes
         boxes_np = np.array(boxes, dtype=np.float32)
         keep_indices = non_maximum_suppression(boxes_np, iou_thresh=args.iou)
         kept = boxes_np[keep_indices] if keep_indices.size > 0 else np.zeros((0,5), dtype=np.float32)
 
+        # Draw the boxes on the frames
         draw_boxes(frame, kept, color=(0,255,0), thickness=2)
         out_vid.write(frame)
 
