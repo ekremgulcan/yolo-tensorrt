@@ -9,8 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
-# Output folder
-outputs
-
 # Videos
 *.mp4
+
+# TensorRT engine
+*.engine
