@@ -31,7 +31,6 @@ class TRTModel:
         runtime = trt.Runtime(TRT_LOGGER)
 
         with open(engine_path, "rb") as f:
-            print(f"Loading engine from {engine_path}")
             model_data = f.read()
 
             engine = runtime.deserialize_cuda_engine(model_data)

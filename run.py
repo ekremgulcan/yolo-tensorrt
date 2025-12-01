@@ -15,6 +15,7 @@ def main(args):
         raise RuntimeError("This script expects a CUDA GPU available for GPU preprocessing and NMS.")
 
     # Load TRT engine
+    print(f"[i] Loading engine from {args.engine}")
     trt_model = TRTModel(args.engine)
 
     # Open video
@@ -27,7 +28,7 @@ def main(args):
     orig_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     orig_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    Path(args.out).mkdir(parents=True, exist_ok=True)
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     out_vid = cv2.VideoWriter(args.out, fourcc, fps, (orig_w, orig_h))
 
     frame_idx = 0
@@ -75,6 +76,7 @@ def main(args):
 
     t1 = time.time()
     print(f"[i] Processed {frame_idx} frames in {t1-t0:.2f} s ({frame_idx/(t1-t0):.2f} FPS)")
+    print(f"[i] Saved to {args.out}")
     cap.release()
     out_vid.release()
     cv2.destroyAllWindows()
