@@ -19,6 +19,7 @@ def main(args):
     trt_model = TRTModel(args.engine)
 
     # Open video
+    print("[i] Opening the video")
     cap = cv2.VideoCapture(args.video)
     if not cap.isOpened():
         raise RuntimeError(f"Failed to open video: {args.video}")
@@ -33,6 +34,7 @@ def main(args):
 
     frame_idx = 0
     t0 = time.time()
+    print("[i] Preprocessing and inference")
     while True:
         ret, frame = cap.read()
         if not ret:
